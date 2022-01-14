@@ -1,2 +1,196 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+using System.Collections.Generic;
+
+namespace ClassLibraryForHomeworkBaseClassMethods
+{
+
+
+
+}
+namespace baseclass
+{
+    public class Student
+    {
+
+        public string Name { get; set; }
+
+        public int Age { get; set; }
+
+        public string Sex { get; set; }
+
+        public int KdmMark { get; set; }
+
+        public int VmMark { get; set; }
+
+        public static double IndexOfHappiness(int KdmMark, int VmMark)
+        {
+
+            return Overall(KdmMark, VmMark);
+
+        }
+
+        public static double IndexOfHappiness(int KdmMark, int VmMark, string Name, string Sex)
+        {
+
+            if (Name == "Ivan")
+            {
+                Console.WriteLine("он просто хотел поиграть в доту...");
+                return 1;
+            }
+            else
+            {
+                if (Sex == "female") { Console.Write("Index for this girl is:"); return Overall(KdmMark, VmMark); }
+                else { Console.Write("Index for this man is:"); return Overall(KdmMark, VmMark); }
+            }
+
+        }
+
+        private static double Overall(int KdmMark, int VmMark)
+        {
+            return ((double)KdmMark + (double)VmMark) / 2.0;
+        }
+
+
+
+    }
+
+    internal class Employer
+    {
+
+        public string empName;
+
+        internal Employer(string Name)
+        {
+            empName = Name;
+        }
+
+        public string Name
+        {
+            get { return empName; }
+            set => empName = value;
+        }
+
+        public List<Student> Employee { get; set; }
+
+        public static void AddStudent(Student student, List<Student> employee) => employee.Add(student);
+
+        public static double SalaryCount(Student student)
+        {
+            double res = (Student.IndexOfHappiness(student.KdmMark, student.VmMark) / 100.0) * 20000.0;
+
+            return res;
+        }
+    }
+
+    public class Program
+    {
+
+        public static void Main()
+        {
+            Console.WriteLine("Welcome to mine employee list constructor!");
+
+        NewEmployer:
+
+            Console.WriteLine("Enter the employer's name:");
+
+            Employer employer = new Employer(Console.ReadLine());
+
+            employer.Employee = new List<Student>();
+
+            bool flag = false;
+
+        NewStudent:
+
+            Student student = new Student();
+
+            Console.WriteLine("Student info:");
+
+            Console.WriteLine("Enter the name:");
+            student.Name = Console.ReadLine();
+
+            Console.WriteLine("Enter the age:");
+
+            do
+            {
+                flag = int.TryParse(Console.ReadLine(), out int age);
+                if (flag) { student.Age = age; }
+                else { Console.WriteLine("Incorrect age!"); }
+            }
+            while (!flag);
+
+            Console.WriteLine("Enter the sex (female/male):");
+
+            do
+            {
+                string sex = Console.ReadLine();
+                if (sex == "male" || sex == "female") { student.Sex = sex; flag = true; }
+                else { Console.WriteLine("Incorrect sex!"); flag = false; }
+            }
+            while (!flag);
+
+
+            Console.WriteLine("Enter the kdm mark:");
+
+            do
+            {
+                flag = int.TryParse(Console.ReadLine(), out int KdmMark);
+                if (flag) { student.KdmMark = KdmMark; }
+                else { Console.WriteLine("Incorrect mark!"); }
+            }
+            while (!flag);
+
+            Console.WriteLine("Enter the vm mark:");
+
+            do
+            {
+                flag = int.TryParse(Console.ReadLine(), out int VmMark);
+                if (flag) { student.VmMark = VmMark; }
+                else { Console.WriteLine("Incorrect mark!"); }
+            }
+            while (!flag);
+
+            Console.WriteLine("Index of happiness without overload:");
+
+            Console.WriteLine(Student.IndexOfHappiness(student.KdmMark, student.VmMark));
+
+            Console.WriteLine("Index of happiness with overload:");
+
+            Console.WriteLine(Student.IndexOfHappiness(student.KdmMark, student.VmMark, student.Name, student.Sex));
+
+            Employer.AddStudent(student, employer.Employee);
+
+            Console.WriteLine("Salary for this student based on his marks:");
+
+            Console.WriteLine(Employer.SalaryCount(student));
+
+            Console.WriteLine("Enter 1 to add new employer, 2 - to add new student to a list, any other key - to exit");
+
+            string NextMove = Console.ReadLine();
+
+            if (NextMove == "1")
+            {
+                Console.WriteLine($"List of student names for the employer {employer.Name}:");
+                foreach (Student stud in employer.Employee) { Console.WriteLine(stud.Name); }
+
+                goto NewEmployer;
+            }
+            else
+            {
+                if (NextMove == "2")
+                {
+                    goto NewStudent;
+                }
+                else
+                {
+                    Console.WriteLine($"List of student names for the employer {employer.Name}:");
+                    foreach (Student stud in employer.Employee) { Console.WriteLine(stud.Name); }
+                    Console.WriteLine("Thanks for using my program!");
+                }
+            }
+
+        }
+
+
+    }
+
+}
