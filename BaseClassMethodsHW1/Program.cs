@@ -1,87 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-
-namespace ClassLibraryForHomeworkBaseClassMethods
-{
-
-
-
-}
+using ClassStudent;
+using ClassEmployer;
 namespace baseclass
 {
-    public class Student
-    {
-
-        public string Name { get; set; }
-
-        public int Age { get; set; }
-
-        public string Sex { get; set; }
-
-        public int KdmMark { get; set; }
-
-        public int VmMark { get; set; }
-
-        public static double IndexOfHappiness(int KdmMark, int VmMark)
-        {
-
-            return Overall(KdmMark, VmMark);
-
-        }
-
-        public static double IndexOfHappiness(int KdmMark, int VmMark, string Name, string Sex)
-        {
-
-            if (Name == "Ivan")
-            {
-                Console.WriteLine("он просто хотел поиграть в доту...");
-                return 1;
-            }
-            else
-            {
-                if (Sex == "female") { Console.Write("Index for this girl is:"); return Overall(KdmMark, VmMark); }
-                else { Console.Write("Index for this man is:"); return Overall(KdmMark, VmMark); }
-            }
-
-        }
-
-        private static double Overall(int KdmMark, int VmMark)
-        {
-            return ((double)KdmMark + (double)VmMark) / 2.0;
-        }
-
-
-
-    }
-
-    internal class Employer
-    {
-
-        public string empName;
-
-        internal Employer(string Name)
-        {
-            empName = Name;
-        }
-
-        public string Name
-        {
-            get { return empName; }
-            set => empName = value;
-        }
-
-        public List<Student> Employee { get; set; }
-
-        public static void AddStudent(Student student, List<Student> employee) => employee.Add(student);
-
-        public static double SalaryCount(Student student)
-        {
-            double res = (Student.IndexOfHappiness(student.KdmMark, student.VmMark) / 100.0) * 20000.0;
-
-            return res;
-        }
-    }
-
     public class Program
     {
 
@@ -128,7 +50,6 @@ namespace baseclass
             }
             while (!flag);
 
-
             Console.WriteLine("Enter the kdm mark:");
 
             do
@@ -171,7 +92,6 @@ namespace baseclass
             {
                 Console.WriteLine($"List of student names for the employer {employer.Name}:");
                 foreach (Student stud in employer.Employee) { Console.WriteLine(stud.Name); }
-
                 goto NewEmployer;
             }
             else
