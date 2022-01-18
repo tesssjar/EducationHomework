@@ -6,15 +6,14 @@ namespace ClassEmployer
 {
     public class Employer
     {
-        public string empName;
         public Employer(string Name)
         {
-            empName = Name;
+            Name = Name;
         }
         public string Name
         {
-            get { return empName; }
-            set => empName = value;
+            get { return Name; }
+            set => Name = value;
         }
         public List<Student> Employee { get; set; }
         public static void AddStudent(Student student, List<Student> employee) => employee.Add(student);
