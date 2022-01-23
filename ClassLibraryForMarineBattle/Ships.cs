@@ -7,7 +7,7 @@ using Fields;
 
 namespace MarineShips
 {
-    public abstract class Ship
+    public class Ship
     {
         public int Length { get; set; }
         public int Speed { get; set; }

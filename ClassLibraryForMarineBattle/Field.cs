@@ -19,8 +19,8 @@ namespace Fields
 
         public static bool IsEnoughSpace(List<int> Location, int Length, List<Ship> ships) 
         {
-            if (Location[1] > Length / 2 || Location[0] > Length / 2 || Location[1] < -Length / 2 || Location[0] < -Length / 2 ||
-                Location[3] > Length / 2 || Location[2] > Length / 2 || Location[3] < -Length / 2 || Location[2] < -Length / 2)
+            if (Location[1] > Length || Location[0] > Length || Location[1] < -Length || Location[0] < -Length ||
+                Location[3] > Length || Location[2] > Length || Location[3] < -Length || Location[2] < -Length)
             {
                 return false;
             } 
