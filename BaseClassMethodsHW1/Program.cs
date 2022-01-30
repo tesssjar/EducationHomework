@@ -1,2 +1,57 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq.Expressions;
+using FileWork;
+
+namespace Program
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            List<TextFiles> textFiles = new List<TextFiles>();
+            List<Pictures> pictures = new List<Pictures>();
+            List<Movies> movies = new List<Movies>();
+
+            Console.WriteLine("Enter a string:");
+            string source = Console.ReadLine();
+
+            FileConstruct.FileConstructor(source, textFiles, pictures, movies);
+
+            Console.WriteLine("Text files:");
+            TextFiles.SortFiles(textFiles);
+
+            foreach (var file in textFiles) 
+            {
+                Console.WriteLine($"        {file.Name}");
+                Console.WriteLine($"                Extention: {file.Extension}");
+                Console.WriteLine($"                Size: {file.SizeStringed}");
+                Console.WriteLine($"                Content: ''{file.Content}''");
+            }
+
+            Console.WriteLine("Movies:");
+            Movies.SortFiles(movies);
+
+            foreach (var file in movies)
+            {
+                Console.WriteLine($"        {file.Name}");
+                Console.WriteLine($"                Extention: {file.Extension}");
+                Console.WriteLine($"                Size: {file.SizeStringed}");
+                Console.WriteLine($"                Resolution: {file.Resolution}");
+                Console.WriteLine($"                Length: {file.Length}");
+            }
+
+            Console.WriteLine("Images:");
+            Pictures.SortFiles(pictures);
+
+            foreach (var file in pictures)
+            {
+                Console.WriteLine($"        {file.Name}");
+                Console.WriteLine($"                Extention: {file.Extension}");
+                Console.WriteLine($"                Size: {file.SizeStringed}");
+                Console.WriteLine($"                Resolution: {file.Resolution}");
+            }
+        }
+    }
+}
