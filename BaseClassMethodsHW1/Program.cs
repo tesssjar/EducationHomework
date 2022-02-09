@@ -14,10 +14,23 @@ namespace Program
             List<Pictures> pictures = new List<Pictures>();
             List<Movies> movies = new List<Movies>();
 
-            Console.WriteLine("Enter a string:");
-            string source = Console.ReadLine();
+            List<string> source = new List<string>();
+            
 
-            FileConstruct.FileConstructor(source, textFiles, pictures, movies);
+            Console.WriteLine("Enter a string:");
+            
+            string str = Console.ReadLine();
+
+            do
+            {
+                source.Add(str);
+                str = Console.ReadLine();
+            } while (str.Length != 0);
+
+            foreach (var varstring in source)
+            {
+                FileConstruct.FileConstructor(varstring, textFiles, pictures, movies);
+            }
 
             Console.WriteLine("Text files:");
             TextFiles.SortFiles(textFiles);
